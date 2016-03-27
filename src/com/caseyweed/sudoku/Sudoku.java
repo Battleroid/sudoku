@@ -156,42 +156,7 @@ public class Sudoku extends Application {
      */
     static boolean legal(int i, int j, int[][] grid) {
         int val = grid[i][j];
-
-        // col check
-        for (int k = 0; k < 9; ++k) {
-            if (i == k) {
-                continue;
-            } else {
-                if (val == grid[k][j])
-                    return false;
-            }
-        }
-
-        // row check
-        for (int k = 0; k < 9; ++k) {
-            if (j == k) {
-                continue;
-            } else {
-                if (val == grid[i][k])
-                    return false;
-            }
-        }
-
-        // block check
-        int rowOffset = (i / 3) * 3;
-        int colOffset = (j / 3) * 3;
-        for (int r = 0; r < 3; ++r) {
-            for (int c = 0; c < 3; ++c) {
-                if ((rowOffset + r) == i && (colOffset + c) == j) {
-                    continue;
-                } else {
-                    if (val == grid[rowOffset + r][colOffset + c])
-                        return false;
-                }
-            }
-        }
-
-        return true;
+        return legal(i, j, val, grid);
     }
 
     /**
